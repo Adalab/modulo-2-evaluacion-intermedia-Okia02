@@ -6,18 +6,19 @@ const compScore = document.querySelector(".js-attempts-comp");
 const userScore = document.querySelector('.js-attempts-user');
 const resultMessage = document.querySelector(".js-result-message");
 let computerValue = '';
-let userChoice = optionSelect.value;
 let game = '';
 let attemptsCounter = document.querySelector('.js-attempts-counter');
 
 
-function getRandomNumber(max) {
-  return Math.ceil(Math.random() * max);
+function getRandomNumber() {
+  return Math.ceil(Math.random() * 100);
 }
 
-let randomNumber = getRandomNumber(100);
+
 
 function computerChoice () {
+  let randomNumber = getRandomNumber(100);
+  let userChoice = optionSelect.value;
   if (randomNumber <= 33) {
     computerValue = "piedra";
   } else if (randomNumber >= 66) {
@@ -25,9 +26,9 @@ function computerChoice () {
   } else if (randomNumber <= 100) {
     computerValue = "tijera";
   }
-  if (computerChoice === userChoice) {
+  if (computerValue === userChoice) {
     game = 'Empate &#128581';
-  } else if (computerChoice === 'piedra') {
+  } else if (computerValue === 'piedra') {
     if (userChoice === 'papel') {
       game = 'Has ganado &#127881';
       userWins();
@@ -35,7 +36,7 @@ function computerChoice () {
       game = 'Has perdido &#128128';
       compWins();
     }
-  } else if (computerChoice === 'papel') {
+  } else if (computerValue === 'papel') {
     if (userChoice === 'piedra') {
       game = 'Has perdido &#128128';
       compWins();
@@ -43,7 +44,7 @@ function computerChoice () {
       game = 'Has ganado &#127881';
       userWins();
     }
-  } else if (computerChoice === 'tijera') {
+  } else if (computerValue === 'tijera') {
     if (userChoice === 'piedra') {
       game = 'Has ganado &#127881';
       userWins();
@@ -51,26 +52,29 @@ function computerChoice () {
       game = 'Has perdido &#128128';
       compWins();
     }
-  }
-}
+  }  
   resultMessage.innerHTML = `${game}`;
- 
-function compWins() { 
-  let compCounter = 0;
-  compCounter++;
-  compScore.innerHTML = `${compCounter}`;
-}
- 
-function userWins() { 
-  let userCounter = 0;
-  userCounter++;
-  userScore.innerHTML = `${userCounter}`;
+  console.log(computerValue);
 }
 
-function counter() {
-  let counterGame = 0;
+
+ let compCounter = 0;
+function compWins() {   
+  compCounter++;
+  compScore.innerHTML = `${compCounter}`;
+  console.log('computadora');
+}
+  let userCounter = 0;
+function userWins() {  
+  userCounter++;
+  userScore.innerHTML = `${userCounter}`;
+  console.log('jugadora');
+}
+ let counterGame = 0;
+function counter() { 
   counterGame++;
   attemptsCounter.innerHTML = `${counterGame}`;
+  
 }
 
 function handlerBtn(ev) {
