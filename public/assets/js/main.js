@@ -3,19 +3,19 @@
 const btn = document.querySelector(".js-input");
 const optionSelect = document.querySelector(".js_select_option");
 const compScore = document.querySelector(".js-attempts-comp");
-const userScore = document.querySelector('.js-user-score-user');
+const userScore = document.querySelector('.js-attempts-user');
 const resultMessage = document.querySelector(".js-result-message");
+let computerValue = '';
+let userChoice = optionSelect.value;
+let game = '';
 let attemptsCounter = document.querySelector('.js-attempts-counter');
 
 
 function getRandomNumber(max) {
   return Math.ceil(Math.random() * max);
 }
-let randomNumber = getRandomNumber(100);
 
-let computerValue = '';
-let userValue = '';
-let game = '';
+let randomNumber = getRandomNumber(100);
 
 function computerChoice () {
   if (randomNumber <= 33) {
@@ -25,9 +25,6 @@ function computerChoice () {
   } else if (randomNumber <= 100) {
     computerValue = "tijera";
   }
-}
-
-let userChoice = optionSelect.value; 
   if (computerChoice === userChoice) {
     game = 'Empate &#128581';
   } else if (computerChoice === 'piedra') {
@@ -55,16 +52,17 @@ let userChoice = optionSelect.value;
       compWins();
     }
   }
+}
+  resultMessage.innerHTML = `${game}`;
  
- resultMessage.innerHTML = game;
- let compCounter = 0;
 function compWins() { 
+  let compCounter = 0;
   compCounter++;
   compScore.innerHTML = `${compCounter}`;
 }
- let userCounter = 0;
-function userWins() {
  
+function userWins() { 
+  let userCounter = 0;
   userCounter++;
   userScore.innerHTML = `${userCounter}`;
 }
@@ -75,12 +73,11 @@ function counter() {
   attemptsCounter.innerHTML = `${counterGame}`;
 }
 
-function handlerClick(ev) {
+function handlerBtn(ev) {
   ev.preventDefault();
   computerChoice();
   counter();  
-  randomNumber = getRandomNumber(100);
 }
-btn.addEventListener("click", handlerClick);
+btn.addEventListener("click", handlerBtn);
 
 //# sourceMappingURL=main.js.map
