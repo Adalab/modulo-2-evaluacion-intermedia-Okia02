@@ -53,8 +53,8 @@ function selectionComputer() {
     }
   }
 }
-function computerChoice() { 
-  selectionComputer()
+function computerChoice() {
+  selectionComputer();
   resultMessage.innerHTML = `${game}`;
 }
 function compWins() {
