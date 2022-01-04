@@ -9,12 +9,13 @@ let attemptsCounter = document.querySelector(".js-attempts-counter");
 let compCounter = 0;
 let userCounter = 0;
 let counterGame = 0;
+let game = "";
+
 function getRandomNumber() {
   return Math.ceil(Math.random() * 100);
 }
-function computerChoice() {
+function selectionComputer() {
   let computerValue = "";
-  let game = "";
   let randomNumber = getRandomNumber(100);
   let userChoice = optionSelect.value;
   if (randomNumber <= 33) {
@@ -51,6 +52,9 @@ function computerChoice() {
       compWins();
     }
   }
+}
+function computerChoice() { 
+  selectionComputer()
   resultMessage.innerHTML = `${game}`;
 }
 function compWins() {
